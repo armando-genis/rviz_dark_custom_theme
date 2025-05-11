@@ -1,9 +1,6 @@
 # rviz_dark_custom_theme
 
-
-
-
-
+![rviz2 Screenshot](https://github.com/armando-genis/rviz_dark_custom_theme/blob/main/img/rviz_img.png)
 
 ## → 🔧 Dependencies
 
@@ -34,7 +31,7 @@ Changing a tool button’s icon for *all* states purely in QSS can be tricky. A 
 sudo find /opt/ros/humble/share/rviz_default_plugins/icons/classes/ -type f
 ```
 
-Copy your custom SVG into place (use the exact same filename). This is an example inside the `icons` folder: 
+Copy your custom SVG or PNG into place (use the exact same filename). This is an example inside the `icons` folder: 
 ```bash
 cp map_point.svg /opt/ros/humble/share/rviz_default_plugins/icons/classes/PublishPoint.svg
 cp robot.png /opt/ros/humble/share/rviz_default_plugins/icons/classes/SetInitialPose.png
