@@ -26,6 +26,21 @@ Before you run, update your Qt5ct and Ansible files:
       me_qss_file:     "/workspace/rviz_dark_custom_theme/rviz.qss"
     ```
 
+## 💡 Replacing Default RViz Icons
+
+Changing a tool button’s icon for *all* states purely in QSS can be tricky. A more direct approach is to swap out RViz’s built-in icon files:
+
+```bash
+sudo find /opt/ros/humble/share/rviz_default_plugins/icons/classes/ -type f
+```
+
+Copy your custom SVG into place (use the exact same filename). This is an example inside the `icons` folder: 
+```bash
+cp map_point.svg /opt/ros/humble/share/rviz_default_plugins/icons/classes/PublishPoint.svg
+cp robot.png /opt/ros/humble/share/rviz_default_plugins/icons/classes/SetInitialPose.png
+cp 2dgoal.png /opt/ros/humble/share/rviz_default_plugins/icons/classes/SetGoal.png
+```
+
 ## → ⚙️ Compile & Install
 
 Run the Ansible playbook to (re)install and configure the theme:
@@ -76,17 +91,3 @@ gammaray --inprocess rviz2
 > 🔑 Important panels live under Objects → VisualizationFrame.
 > 
 
-
-## 💡 Replacing Default RViz Icons
-
-Changing a tool button’s icon for *all* states purely in QSS can be tricky. A more direct approach is to swap out RViz’s built-in icon files:
-
-```bash
-sudo find /opt/ros/humble/share/rviz_default_plugins/icons/classes/ -type f
-```
-
-Copy your custom SVG into place (use the exact same filename)
-
-```bash
-sudo cp workspace/icons/toolbar_point.svg opt/ros/humble/share/rviz_default_plugins/icons/classes/PublishPoint.svg
-```

@@ -132,6 +132,7 @@ QToolButton:checked {
 /*  Docs: https://doc.qt.io/qt-5/qtoolbutton.html  */
 /*  ------------------------------------------------------------------------  */
 
+
 QToolBar {
   border: 0px solid;
 }
@@ -176,3 +177,5 @@ QToolBar QToolButton:pressed,
 QToolBar QToolButton:checked,{
   qproperty-iconSize: 40px 40px;
 }
+
+
