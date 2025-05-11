@@ -1,0 +1,178 @@
+/*  ------------------------------------------------------------------------  */
+/* QtMaterial - https://github.com/UN-GCPDS/qt-material
+/* By Yeison Cardona - GCPDS
+/*  ------------------------------------------------------------------------  */
+
+* {
+  color:rgb(255, 255, 255);
+  font-family: Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 13px;
+  selection-color:rgb(28, 168, 255);
+}
+
+/*  ------------------------------------------------------------------------  */
+/*  Custom colors  */
+
+
+.danger {
+  color: #dc3545;
+  background-color: transparent;
+}
+
+.warning {
+  color: #ffc107;
+  background-color: transparent;
+}
+
+.success {
+  color:rgb(63, 241, 19);
+  background-color: transparent;
+}
+
+.danger:disabled {
+  color: rgba(220, 53, 69, 0.4);
+  border-color: rgba(220, 53, 69, 0.4);
+}
+
+.warning:disabled {
+  color: rgba(255, 193, 7, 0.4);
+  border-color: rgba(255, 193, 7, 0.4);
+}
+
+.success:disabled {
+  color: rgba(132,194,230, 0.4);
+  border-color: rgba(132,194,230, 0.4);
+}
+
+.danger:flat:disabled {
+  background-color: rgba(220, 53, 69, 0.1);
+}
+
+.warning:flat:disabled {
+  background-color: rgba(255, 193, 7, 0.1);
+}
+
+.success:flat:disabled {
+  background-color: rgba(132,194,230, 0.1);
+}
+
+QWidget, QGroupBox, QFrame, QTabWidget::pane, QStatusBar, QScrollArea, QStackedWidget, QWidget > QToolBox, QToolBox > QWidget, QTabWidget > QWidget {
+  background-color: #0f1417;
+}
+
+QDateEdit, QDateTimeEdit, QSpinBox, QDoubleSpinBox, QComboBox, QLineEdit, QPlainTextEdit, QTextEdit, QListView {
+  background-color: #0f1417;
+}
+
+QListView {
+  background-color: #1b2023;
+}
+
+QPushButton:disabled, QSpinBox, QDoubleSpinBox {
+  background-color: #292d30;
+}
+
+QMenu, QScrollBar.big:horizontal, QScrollBar.big:vertical, QToolButton {
+  background-color: #1b2023;
+}
+
+QScrollBar, QTabBar::tab:selected, QSlider::groove:horizontal, QSlider::groove:vertical, QToolBox::tab, QHeaderView::section, QFrame[frameShape="4"], QFrame[frameShape="5"], QTableCornerButton::section {
+  background-color: #0f1417;
+}
+
+QTabBar::tab, QTabBar QToolButton, QToolBar, QMenuBar, QSlider, QToolButton, QTreeView, QTableView, QListView, QTreeView::branch:selected, QTableView::item:selected, QTreeView::item:selected, QListView::item:selected {
+  background-color: #303538;
+}
+
+QScrollBar::handle, QSlider::sub-page, QProgressBar::chunk, QPushButton:checked, QPushButton:pressed, QPushButton:hover, QTabBar::tab:hover {
+  background-color: #262931;
+}
+
+QScrollBar.big {
+  background-color: #232629;
+}
+
+QDockWidget {
+  background-color: #0f1417;
+}
+
+QDialog {
+  background-color: #1b2023;
+}
+
+/*  ------------------------------------------------------------------------  */
+/*  All bottons   */
+/*  ------------------------------------------------------------------------  */
+
+QToolButton {
+  background: #171c1f;
+  border: 0px;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 3px;
+  color: #8bd0f0;
+}
+
+QToolButton:hover {
+  background: #262931;
+}
+
+QToolButton:pressed {
+  background: #2d303a;
+}
+
+QToolButton:checked {
+  background: #2d303a;
+  border: 1px solid #8bd0f0;
+}
+
+/*  ------------------------------------------------------------------------  */
+/*  QToolBar  */
+/*  Docs: https://doc.qt.io/qt-5/qtoolbutton.html  */
+/*  ------------------------------------------------------------------------  */
+
+QToolBar {
+  border: 0px solid;
+}
+
+QToolBar:horizontal {
+  /* border-bottom: 1px solid rgba(132, 194, 230, 0.7); */
+  border-top: 1px solid rgba(132, 194, 230, 0.7);
+}
+
+QToolBar:vertical {
+  border-right: 1px solid rgba(132, 194, 230, 0.7);
+  border-left: 1px solid rgba(132, 194, 230, 0.7);
+}
+
+QToolBar QToolBar QToolButton:hover {
+  background-color: rgba(112, 127, 136, 0.2);  /* Light blue highlight */
+}
+
+/* -------------------------------------------------------------------------  */
+/*  QToolButton states for the  2D Pose Estimate*/
+/* -------------------------------------------------------------------------  */
+
+QToolBar QToolButton[toolTip="2D Goal Pose"],
+QToolBar QToolButton[toolTip="2D Goal Pose"]:hover,
+QToolBar QToolButton[toolTip="2D Goal Pose"]:pressed,
+QToolBar QToolButton[toolTip="2D Goal Pose"]:checked,
+QToolBar QToolButton[toolTip="2D Goal Pose"]:focus {
+  color: #00ff00;
+}
+
+QToolBar QToolButton[toolTip="2D Pose Estimate"],
+QToolBar QToolButton[toolTip="2D Pose Estimate"]:hover,
+QToolBar QToolButton[toolTip="2D Pose Estimate"]:pressed,
+QToolBar QToolButton[toolTip="2D Pose Estimate"]:checked,
+QToolBar QToolButton[toolTip="2D Pose Estimate"]:focus {
+  color: #00ff00;
+}
+
+QToolBar QToolButton, 
+QToolBar QToolButton:hover,
+QToolBar QToolButton:pressed,
+QToolBar QToolButton:checked,{
+  qproperty-iconSize: 40px 40px;
+}

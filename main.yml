@@ -1,0 +1,98 @@
+- name: Setup RViz2 in Dark Mode
+  hosts: localhost
+  connection: local
+  tasks:
+
+    - name: Install qt5ct
+      apt:
+        name: qt5ct
+        state: present
+
+    - name: Install rsync
+      apt:
+        name: rsync
+        state: present
+
+    - name: Remove qt5ct from auto-start
+      file:
+        path: /etc/X11/Xsession.d/99qt5ct
+        state: absent
+
+        
+
+    # change the path to the location of your qt5ct.conf and rviz.qss files
+    - name: Set variable qt5ct_config_dir and qt5ct_qss_dir
+      set_fact:
+        qt5ct_config_dir: "{{ ansible_env.HOME }}/.config/qt5ct"
+        qt5ct_qss_dir: "{{ ansible_env.HOME }}/.config/qt5ct/qss"
+
+    #change the path to the location of your qt5ct.conf and rviz.qss files
+    - name: Set variable qt5ct_conf_file and me_qss_file
+      set_fact:
+        qt5ct_conf_file: "/workspace/rviz_dark_custom_theme/qt5ct.conf"
+        me_qss_file: "/workspace/rviz_dark_custom_theme/rviz.qss"  
+        
+    # if you want to use the icons from the qt5ct theme, uncomment the following lines
+    # - name: Set icons_path variable
+    #   ansible.builtin.set_fact:
+    #     icons_path: "{{ qt5ct_config_dir }}/icons"
+        
+    # - name: Remove icons folder if it exists
+    #   ansible.builtin.file:
+    #     path: "{{ icons_path }}"
+    #     state: absent
+        
+    # # Replace rsync with synchronize which is an ansible wrapper for rsync
+    # - name: Copy icons to the qt5ct config directory
+    #   ansible.posix.synchronize:
+    #     src: "/workspace/rviz_dark_custom_theme/icons/"   #change this to the location of your icons
+    #     dest: "{{ icons_path }}/"
+    #     mode: push
+
+    # then you can add you icon like this: qproperty-icon: url("/icons_path/rightarrow.svg");
+
+    - name: Ensure qt5ct_config_dir/qss exists
+      file:
+        path: "{{ qt5ct_qss_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Ensure qt5ct_config_dir exists
+      file:
+        path: "{{ qt5ct_config_dir }}"
+        state: directory
+        mode: '0755'
+
+    # the qss file have to be set before the config file
+    - name: Copy rviz.qss to qss directory
+      copy:
+        src: "{{ me_qss_file }}"
+        dest: "{{ qt5ct_qss_dir }}/rviz.qss"
+        force: true
+        backup: true
+        mode: '0644'
+
+    - name: Replace stylesheets line in qt5ct.conf
+      ansible.builtin.replace:
+        path: "{{ qt5ct_conf_file }}"
+        regexp: "stylesheets=.*"
+        replace: "stylesheets={{ qt5ct_qss_dir }}/rviz.qss"
+
+    - name: Copy qt5ct.conf to configuration directory
+      copy:
+        src: "{{ qt5ct_conf_file }}"
+        dest: "{{ qt5ct_config_dir }}/qt5ct.conf"
+        force: true
+        backup: true
+        mode: '0644'
+
+    - name: Set qt5ct environment variable
+      lineinfile:
+        path: "{{ ansible_env.HOME }}/.bashrc"
+        line: 'export QT_QPA_PLATFORMTHEME=qt5ct'
+        state: present
+
+    - name: Source bashrc
+      shell: ". {{ ansible_env.HOME }}/.bashrc"
+      args:
+        executable: /bin/bash
